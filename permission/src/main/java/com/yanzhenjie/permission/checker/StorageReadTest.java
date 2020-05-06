@@ -15,6 +15,7 @@
  */
 package com.yanzhenjie.permission.checker;
 
+import android.content.Context;
 import android.os.Build;
 import android.os.Environment;
 import android.text.TextUtils;
@@ -26,7 +27,10 @@ import java.io.File;
  */
 class StorageReadTest implements PermissionTest {
 
-    StorageReadTest() {
+    private Context mContext;
+
+    StorageReadTest(Context c) {
+        mContext = c;
     }
 
     @Override
@@ -35,7 +39,8 @@ class StorageReadTest implements PermissionTest {
 
         if (!TextUtils.equals(Environment.MEDIA_MOUNTED, Environment.getExternalStorageState())) return true;
 
-        File directory = Environment.getExternalStorageDirectory();
+        File directory = mContext.getExternalFilesDir(null);
+
         if (!directory.exists()) return true;
 
         long modified = directory.lastModified();
