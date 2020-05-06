@@ -39,7 +39,6 @@ class StorageWriteTest implements PermissionTest {
 
         if (!TextUtils.equals(Environment.MEDIA_MOUNTED, Environment.getExternalStorageState())) return true;
 
-//        File directory = Environment.getExternalStorageDirectory();
         File directory = mContext.getExternalFilesDir(null);
 
         if (!directory.exists()) return true;
